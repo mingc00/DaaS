@@ -13,7 +13,7 @@ class Task(object):
         item_attr = {
             'checksum': '',
             'status': 'Queued',
-            'count': 1
+            'url': self.url
         }
         self.sdb_domain.put_attributes(item_name, item_attr)
 

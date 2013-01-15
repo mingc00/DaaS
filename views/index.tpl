@@ -51,7 +51,7 @@
     <div class="container">
       <div id="bar" class="box">
         <h1>Download as a Service</h1>
-        <form method="post" action="/search" class="form-search">
+        <form method="post" action="/add" class="form-search">
           <input name="url" type="text" class="input-xxlarge"
             placeholder="What do you want to download?"/>
           <button type="submit" class="btn btn-primary btn-large">Download</button>
@@ -60,12 +60,19 @@
     %if results:
       <div class="box" id="download_list">
         <table class="table">
-          <tr><th>URL</th><th>Status</th></tr>
+          <tr><th>URL</th><th>Status</th><th>Link</th></tr>
         %for item in results:
           <tr>
             <td>{{item['url']}}</td>
             <td>{{item['status']}}</td>
+            %if item['status'] == 'Finished':
+              <td>
+                <a href="/download/{{item['checksum']}}/{{item['filename']}}"
+                  class="btn">Download</a>
+              </td>
+            %end
           </tr>
+        %end
         </table>
       </div>
     %end
