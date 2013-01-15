@@ -22,10 +22,11 @@ class Task(object):
         item['status'] = status
         item.save()
 
-    def finish(self, checksum):
+    def finish(self, checksum, filename):
         item = self.sdb_domain.get_item(self.url)
         item['status'] = 'Finished'
         item['checksum'] = checksum
+        item['filename'] = filename
         item.save()
 
     def enqueue(self):
