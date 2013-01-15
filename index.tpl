@@ -57,15 +57,18 @@
           <button type="submit" class="btn btn-primary btn-large">Download</button>
         </form>
       </div>
+    %if results:
       <div class="box" id="download_list">
         <table class="table">
           <tr><th>URL</th><th>Status</th></tr>
+        %for item in results:
           <tr>
-            <td>http://docs.pythonboto.org/en/latest/s3_tut.html</td>
-            <td>Downloading</td>
+            <td>{{item['url']}}</td>
+            <td>{{item['status']}}</td>
           </tr>
         </table>
       </div>
+    %end
     </div>
   </body>
 </html>

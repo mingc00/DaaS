@@ -39,3 +39,10 @@ class Task(object):
 
     def is_dup(self):
         return self.sdb_domain.get_item(self.url) != None
+
+    @classmethod
+    def list_all(cls):
+        sdb_domain = boto.connect_sdb().get_domain('daas')
+        query = 'select * from `daas`'
+        rs = sdb_domain.select(query)
+        return rs
