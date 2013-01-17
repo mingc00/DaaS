@@ -6,7 +6,7 @@ from boto.ec2.cloudwatch import MetricAlarm
 
 # conf
 conn = boto.connect_autoscale()
-lc = LaunchConfiguration(name='my-launch_config', image_id='ami-9fab20f6',
+lc = LaunchConfiguration(name='my-launch_config', image_id='ami-7959d210',
     key_name='mykey',
     security_groups=['daas'])
 conn.create_launch_configuration(lc)
@@ -24,6 +24,7 @@ scale_down_policy = ScalingPolicy(name='scale_down', adjustment_type='ChangeInCa
     as_name='my-group', scaling_adjustment=-1, cooldown=300)
 conn.create_scaling_policy(scale_up_policy)
 conn.create_scaling_policy(scale_down_policy)
+
 
 # cloudwatch alarm
 cloudwatch = boto.connect_cloudwatch()

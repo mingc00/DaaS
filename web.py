@@ -1,4 +1,4 @@
-from bottle import run, template, request, get, post, redirect
+from bottle import run, template, request, get, post, redirect, default_app
 from helper import list_all, get_url
 from task import Task
 
@@ -20,4 +20,7 @@ def add():
 def download(checksum, filename):
     redirect(get_url(checksum, filename))
 
-run(host='localhost', port=8080, reloader=True)
+if __name__ == '__main__':
+    run(host='localhost', port=8080, reloader=True)
+else:
+    application = default_app()
