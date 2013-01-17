@@ -14,7 +14,7 @@ class Worker(object):
     def start(self):
         m = hashlib.sha1()
 
-        f = urlopen(url)
+        f = urlopen(self.task.url)
         BLOCKSIZE = 4 * 1024 * 1024
 
         self.temp = tempfile.TemporaryFile()
@@ -27,7 +27,7 @@ class Worker(object):
 
         # after
         self.checksum = m.hexdigest()
-        self.task.finish(self.checksum, os.path.basename(url))
+        self.task.finish(self.checksum, os.path.basename(self.task.url))
         self.save_to_s3()
 
     def save_to_s3(self):

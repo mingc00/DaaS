@@ -18,6 +18,7 @@ class Task(object):
         self.sdb_domain.put_attributes(item_name, item_attr)
 
     def update_status(self, status):
+        self.task.update_status('Downloading')
         item = self.sdb_domain.get_item(self.url)
         item['status'] = status
         item.save()
