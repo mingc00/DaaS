@@ -41,7 +41,7 @@ class Worker(object):
 if __name__ == '__main__':
 
     while(True):
-        #get (url) from q
+        #get (url) from queue
         queue = boto.connect_sqs().get_queue('daas')
         message = queue.read(5)
         if message == None :
@@ -53,3 +53,5 @@ if __name__ == '__main__':
             worker = Worker(task)
             worker.start()
             queue.delete_message(message)
+            # just for demo auto-scaling
+            time.sleep(30)
